@@ -53,6 +53,8 @@ class CameraClass(object):
 
             self.movement_count += 1
 
+# TODO: Break the asleep/awake into a separate function
+# TODO: Generate an array of Asleep/Awake with Time that will be output on the webpage
         now = datetime.now()
 
         if self.baby_state == "awake": # require 60 contiguous seconds of no movement to be considered asleep
@@ -68,6 +70,7 @@ class CameraClass(object):
             else:
                 self.state_change = False
                 self.asleep_start = None
+                self.movement_count = 0
         else:
             if (self.movement_count != 0) and (self.frame_count % 30 == 9): # this is a hack
                 self.total_movement += 1 # acknowledge movement
@@ -80,15 +83,15 @@ class CameraClass(object):
                 self.state_change = False
                 # print(f'Total Movement: {self.total_movement} at {now}')
                 if self.total_movement >= 20: # check if he moved 20 times in those 60 seconds
-                    baby_state = "awake"
+                    self.baby_state = "awake"
                     print(f'Awake at {self.awake_start}')
                 self.total_movement = 0
                 self.awake_start = None
 
 
-        # cv2.putText(frame, now.strftime("%H:%M:%S"), (10,30), cv2.FONT_HERSHEY_SIMPLEX, 1, 255, 2, cv2.LINE_AA)
+        #cv2.putText(frame, now.strftime("%H:%M:%S"), (10,30), cv2.FONT_HERSHEY_SIMPLEX, 1, 255, 2, cv2.LINE_AA)
         # cv2.putText(frame, f'Asleep MPM: {total_movement}', (200,30), cv2.FONT_HERSHEY_SIMPLEX, 1, 255, 2, cv2.LINE_AA)
-        # cv2.putText(frame, f'{self.baby_state}', (500,30), cv2.FONT_HERSHEY_SIMPLEX, 1, 255, 2, cv2.LINE_AA)
+        #cv2.putText(frame, f'{self.baby_state}', (500,30), cv2.FONT_HERSHEY_SIMPLEX, 1, 255, 2, cv2.LINE_AA)
 
         return frame
 

@@ -1,9 +1,26 @@
+<!doctype html>
 <html>
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Baby Monitor</title>
+        <link href="{{ url_for('static', filename='output.css') }}" rel="stylesheet">
     </head>
-    <body>
-        <h1>Baby Monitor</h1>
-    <img id="bg" src="{{ url_for('video_feed') }}" width="640" height="480">
+    <body class="bg-blue-400">
+        <nav class="flex bg-blue-300 items-center justify-between p-4">
+            <div class="bg-blue-300">
+                <!-- logo -->
+
+                <!-- name -->
+                <h1 class="text-3xl font-bold text-blue-800">Baby Monitor</h1>
+            </div>
+            <div id="babyState" class="text-blue-700">
+
+            </div>
+        </nav>
+        <div class="mx-auto w-2/3 py-10">
+            <img id="bg" src="{{ url_for('video_feed') }}" class="">
+        </div>
     </body>
+    <script src=" {{ url_for('static', filename='script.js') }}"></script>
 </html>

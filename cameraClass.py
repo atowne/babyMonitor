@@ -16,6 +16,7 @@ class CameraClass(object):
         self.asleep_start = None
         self.total_movement = 0
         self.movement_count = 0
+        self.baby_timestamps = []
 
     def get_frame(self):
         ret, frame = self.cap.read()
@@ -66,6 +67,7 @@ class CameraClass(object):
                     self.baby_state = "asleep"
                     self.state_change = False
                     print(f'Asleep at {self.asleep_start}')
+                    self.baby_timestamps.append([self.baby_state.title(), self.asleep_start.strftime("%H:%M:%S")])
                     self.asleep_start = None
             else:
                 self.state_change = False
@@ -85,6 +87,7 @@ class CameraClass(object):
                 if self.total_movement >= 20: # check if he moved 20 times in those 60 seconds
                     self.baby_state = "awake"
                     print(f'Awake at {self.awake_start}')
+                    self.baby_timestamps.append([self.baby_state.title(), self.awake_start.strftime("%H:%M:%S")])
                 self.total_movement = 0
                 self.awake_start = None
 

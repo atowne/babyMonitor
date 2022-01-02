@@ -28,5 +28,9 @@ def video_feed():
 def baby_details():
     return jsonify(baby_state=cam.baby_state.title())
 
+@app.route('/timestamps')
+def timestamps():
+    return jsonify(timestamps=cam.baby_timestamps)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True, threaded=True)

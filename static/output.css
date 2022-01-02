@@ -436,12 +436,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: flex;
 }
 
+.table {
+  display: table;
+}
+
 .w-1\/2 {
   width: 50%;
 }
 
 .w-2\/3 {
   width: 66.666667%;
+}
+
+.table-auto {
+  table-layout: auto;
 }
 
 .items-center {

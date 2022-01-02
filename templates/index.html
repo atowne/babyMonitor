@@ -8,18 +8,30 @@
     </head>
     <body class="bg-blue-400">
         <nav class="flex bg-blue-300 items-center justify-between p-4">
-            <div class="bg-blue-300">
+            <div class="flex items-center">
                 <!-- logo -->
-
+                <img src="{{ url_for('static', filename='babyicon.png') }}" /> <!-- https://cdn3.iconfinder.com/data/icons/feminism-line-girl-power/512/Pregnancy-512.png -->
                 <!-- name -->
                 <h1 class="text-3xl font-bold text-blue-800">Baby Monitor</h1>
             </div>
             <div id="babyState" class="text-blue-700">
-
             </div>
         </nav>
         <div class="mx-auto w-2/3 py-10">
             <img id="bg" src="{{ url_for('video_feed') }}" class="">
+        </div>
+        <div class="">
+            <table class="table-auto mx-auto">
+                <thead>
+                    <tr>
+                        <th>Baby Status</th>
+                        <th>TimeStamp</th>
+                    </tr>
+                </thead>
+                <tbody id="babyTimestamps">
+                </tbody>
+            </table>
+
         </div>
     </body>
     <script src=" {{ url_for('static', filename='script.js') }}"></script>

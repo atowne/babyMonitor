@@ -37,7 +37,7 @@ async function updateTimestamps() {
                             <td>${timestamp[1]}</td>
                             </tr>`;
 
-        html += htmlSegment;
+        html = htmlSegment + html; //Newest status at the top
     };
 
     babyTimestamps.innerHTML = html;

@@ -14,6 +14,7 @@ def index():
 def gen(camera):
     while True:
         frame = camera.get_frame()
+        camera.baby_evaluation()
         encode_return_code, image_buffer = cv2.imencode('.jpg', frame)
         io_buf = io.BytesIO(image_buffer)
         yield (b'--frame\r\n'

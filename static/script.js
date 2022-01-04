@@ -11,9 +11,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     setInterval(updateBabyState, 1000) // interval value in milliseconds
   })
 
-// I need to ignore all of this and do streaming data instead
-// Can I send the whole timestamps to the page?
-
 async function fetchTimestamps() {
     try {
     const response = await fetch('/timestamps', {

@@ -14,6 +14,7 @@ def index():
 def gen(camera):
     while True:
         frame = camera.get_frame()
+        #TODO: Add empty bed dector. If bed empty=true, skip baby_evaluation
         camera.baby_evaluation()
         encode_return_code, image_buffer = cv2.imencode('.jpg', frame)
         io_buf = io.BytesIO(image_buffer)
@@ -26,10 +27,12 @@ def video_feed():
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route('/baby_details')
+# TODO: Convert Awake/Asleep from polling to push
 def baby_details():
     return jsonify(baby_state=cam.baby_state.title())
 
 @app.route('/timestamps')
+# TODO: Convert Timestamp from polling ot push
 def timestamps():
     return jsonify(timestamps=cam.baby_timestamps)
 

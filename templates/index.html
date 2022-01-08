@@ -21,14 +21,14 @@
             <img id="bg" src="{{ url_for('video_feed') }}" class="">
         </div>
         <div class="">
-            <table class="table-auto mx-auto">
+            <table class="table-auto mx-auto"> <!-- Need to add overflow logic for scrolling -->
                 <thead>
                     <tr>
                         <th>Baby Status</th>
                         <th>TimeStamp</th>
                     </tr>
                 </thead>
-                <tbody id="babyTimestamps">
+                <tbody id="babyTimestamps" class="overflow-auto">
                 </tbody>
             </table>
 

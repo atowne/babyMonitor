@@ -4,7 +4,7 @@ from datetime import datetime
 
 class CameraClass(object):
     def __init__(self):
-        self.cap = cv2.VideoCapture(0, cv2.CAP_V4L)
+        self.cap = cv2.VideoCapture(0)
         self.fps = self.cap.get(cv2.CAP_PROP_FPS) # (30 fps)
 
         self.background = None
@@ -14,7 +14,7 @@ class CameraClass(object):
         self.state_change = False
         self.awake_start = None
         self.asleep_start = None
-        self.total_movement = 0
+        self.total_movement = 0 #TODO: Display Total Movement live during sleep portion
         self.movement_count = 0
         self.baby_timestamps = []
 
@@ -57,8 +57,10 @@ class CameraClass(object):
         return frame
 
     def baby_evaluation(self):
-
-# TODO: Break the asleep/awake into a separate function
+        """
+        Detects if baby is asleep or awake.
+        Does not return any values, but it does update the variables in the Camera class.
+        """
         now = datetime.now()
 
         if self.baby_state == "awake": # require 60 contiguous seconds of no movement to be considered asleep
@@ -70,6 +72,7 @@ class CameraClass(object):
                     self.baby_state = "asleep"
                     self.state_change = False
                     print(f'Asleep at {self.asleep_start}')
+                    # TODO: Add date with time so that it's Status, Date, Time
                     self.baby_timestamps.append([self.baby_state.title(), self.asleep_start.strftime("%H:%M:%S")])
                     self.asleep_start = None
             else:
@@ -89,8 +92,11 @@ class CameraClass(object):
                 if self.total_movement >= 20: # check if he moved 20 times in those 60 seconds
                     self.baby_state = "awake"
                     print(f'Awake at {self.awake_start}')
+                    # TODO: Add date with time so that it's Status, Date, Time
                     self.baby_timestamps.append([self.baby_state.title(), self.awake_start.strftime("%H:%M:%S")])
                 self.total_movement = 0
                 self.awake_start = None
 
         self.movement_count = 0
+
+    # TODO: Empty bed detection function

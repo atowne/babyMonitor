@@ -19,6 +19,11 @@ class CameraClass(object):
         self.baby_timestamps = []
 
     def get_frame(self):
+        """
+        gets frame and overlays movement above a certain threshold
+        :return:
+        frame
+        """
         ret, frame = self.cap.read()
 
         if not ret:
@@ -59,7 +64,7 @@ class CameraClass(object):
     def baby_evaluation(self):
         """
         Detects if baby is asleep or awake.
-        Does not return any values, but it does update the variables in the Camera class.
+        Does not return any values, but it does update the variables in the Camera object.
         """
         now = datetime.now()
 
@@ -80,7 +85,7 @@ class CameraClass(object):
                 self.asleep_start = None
 
         else:
-            if (self.movement_count != 0) and (self.frame_count % 30 == 9): # this is a hack
+            if (self.movement_count != 0) and (self.frame_count % 30 == 9): # check every 10 frames (it was counting too frequently before)
                 self.total_movement += 1 # acknowledge movement
                 if self.state_change == False: # if he is current in the sleep state, then set him to pending wakeup
                     self.awake_start = now
@@ -89,7 +94,7 @@ class CameraClass(object):
 
             if (self.awake_start is not None) and ((now - self.awake_start).seconds >= 60): # check if 60 seconds have elapsed
                 self.state_change = False
-                if self.total_movement >= 20: # check if he moved 20 times in those 60 seconds
+                if self.total_movement >= 10: # check if he moved 10 times in those 60 seconds
                     self.baby_state = "awake"
                     print(f'Awake at {self.awake_start}')
                     # TODO: Add date with time so that it's Status, Date, Time

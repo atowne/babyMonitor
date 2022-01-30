@@ -12,3 +12,7 @@ This web application uses OpenCV to determine if a baby is awake or asleep. It a
 
 ## How do I run it?
 I use a Raspberry Pi 4 with a Camera. The requirements.txt file shows the necessary packages and version number. On your Pi, enter the babyMonitor directory and use "sudo python main.py" to run the app.
+
+Logo is from:
+https://www.iconfinder.com/icons/4751672/baby_feminine_maternity_newborn_infant_pregnancy_icon
+Available under: https://creativecommons.org/licenses/by/3.0/

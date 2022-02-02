@@ -19,7 +19,7 @@ Flask enables streaming of data, including image data, to the browser. Streaming
 
 ## Image Detection:
 
-The camera sends video at 30 fps. I’d like to see if the baby moves once per second, so I grab every 30th frame and compare the baby’s position to a frame 29 frames later. If the baby’s position is identical, he did not move. If the position is not identical, we store that the baby has moved at least once. If the baby moves 10 times in one minute, he is considered awake. This does lead to the occasional false positive; however, at higher thresholds, I encountered too many false negatives.
+The camera sends video at 30 fps. I’d like to see if the baby moves once per second, so I grab every 30th frame and compare the baby’s position to a frame 29 frames later. If the baby’s position is identical, he did not move. If the position is not identical, I store that the baby has moved at least once. If the baby moves 10 times in one minute, he is considered awake. This does lead to the occasional false positive; however, at higher thresholds, I encountered too many false negatives.
 
 
 Logo is from:
